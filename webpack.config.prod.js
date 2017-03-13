@@ -1,9 +1,10 @@
 import webpack from 'webpack';
 import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production');
-}
+  'process.env.NODE_ENV': JSON.stringify('production')
+};
 
 export default {
   debug: true,
@@ -27,7 +28,7 @@ export default {
     new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
-    loaders: [
+    loader: [
       {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
       {test: /(\.css)$/, loaders: ExtractTextPlugin.extract("css?sourceMap")},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
